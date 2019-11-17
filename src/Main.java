@@ -28,12 +28,16 @@ public class Main {
 		Vertice v6 = new Vertice(); 
 		v6.label = "FP_Moedor_e_misturadeira2";
 		
+		Vertice v20 = new Vertice();
+		v20.label = "FD_Controle_de_Identificação";
+		
 		conjuntoV.add(v1);
 		conjuntoV.add(v2);
 		conjuntoV.add(v3);
 		conjuntoV.add(v4);
 		conjuntoV.add(v5);
 		conjuntoV.add(v6);
+		conjuntoV.add(v20);
 	
 		Aresta a1 = new Aresta();
 		a1.origem = v1;
@@ -69,6 +73,13 @@ public class Main {
 		v5.adj.add(v6);
 		v6.adj.add(v5);
 		conjuntoE.add(a5);
+		
+		for(int i=0;i<conjuntoV.size();i++){ // calcula o grau do vertice
+			for(int j=0;j<conjuntoV.get(i).adj.size();j++){
+
+					conjuntoV.get(i).adj.get(j).grau += 1;
+				}
+			}
 		
 		/*
 		Aresta a6 = new Aresta();
@@ -120,10 +131,8 @@ public class Main {
 		int contHorario = 0;
 		
 		while(decrescente.size()<tamanhoV) { // preenche a lista com os vertices em ordem decrescente
-			
-			Vertice v = new Vertice();
-			
-			v = listaDecrescente(aux, conjuntoVoriginal);
+				
+			Vertice v = listaDecrescente(aux, conjuntoVoriginal);
 			decrescente.add(v);
 			semHorarios.add(v);
 			
@@ -151,13 +160,11 @@ public class Main {
 		
 		while(!semHorarios.isEmpty()) {
 			
-			int op = semHorarios.size();
-			
-			for(int i=0;i<op;i++) {
+			for(int i=0;i<semHorarios.size();i++) {
 				int verfHorario = 0;
-				int op2 = semHorarios.get(i).adj.size();
-				for(int j=0;j<op2;j++){
-					if(semHorarios.get(i).adj.get(j).horario != horarios.get(contHorario)){
+				
+				for(int j=0;j<semHorarios.get(i).adj.size();j++){
+					if(semHorarios.get(i).adj.get(j).horario == horarios.get(contHorario)){
 						verfHorario++;
 					}
 				}
@@ -170,6 +177,7 @@ public class Main {
 			}
 			
 			contHorario++;
+			JOptionPane.showMessageDialog(null, horarios.get(contHorario));
 		}
 		
 		
