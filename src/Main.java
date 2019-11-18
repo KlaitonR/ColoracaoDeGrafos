@@ -74,13 +74,6 @@ public class Main {
 		v6.adj.add(v5);
 		conjuntoE.add(a5);
 		
-		for(int i=0;i<conjuntoV.size();i++){ // calcula o grau do vertice
-			for(int j=0;j<conjuntoV.get(i).adj.size();j++){
-
-					conjuntoV.get(i).adj.get(j).grau += 1;
-				}
-			}
-		
 		/*
 		Aresta a6 = new Aresta();
 		a6.origem = v4;
@@ -89,26 +82,15 @@ public class Main {
 		v1.adj.add(v4);
 		conjuntoE.add(a6);
 		*/
-	
-		/*
-		String vertices  = "";
 		
-		for(int i=0;i<conjuntoV.size();i++) {
-			vertices += conjuntoV.get(i).label + " - " + conjuntoV.get(i).horario + " - " + conjuntoV.get(i).grau + "\n";
-		}
-		
-		String arestas = "";
-		for(int i=0;i<conjuntoE.size();i++) {
-			arestas += "(" + conjuntoE.get(i).origem.label + "," + conjuntoE.get(i).destino.label  + ") \n";	
-		}
-		
-		JOptionPane.showMessageDialog(null, vertices +"\n \n \n "+ arestas);
-		
-		*/
-		
+		for(int i=0;i<conjuntoV.size();i++){ // calcula o grau do vertice
+			for(int j=0;j<conjuntoV.get(i).adj.size();j++){
+
+					conjuntoV.get(i).adj.get(j).grau += 1;
+				}
+			}
 		
 		JOptionPane.showMessageDialog(null, welsh_Powell(conjuntoV, conjuntoE, conjuntoVoriginal));
-		
 		
 	}
 	
@@ -144,14 +126,17 @@ public class Main {
 			verfPintado = 0 ;
 			if(decrescente.get(i).horario == null) {
 				for(int j=0;j<decrescente.get(i).adj.size();j++) {
-					if(decrescente.get(i).adj.get(j).horario != null) {
-						verfPintado++; 
-					}
+					
+						if(decrescente.get(i).adj.get(j).horario == horarios.get(contHorario)) {
+							verfPintado++; 
+						}
+						
 				}
 				
 				if(verfPintado==0) {
 					decrescente.get(i).horario = horarios.get(contHorario);
 					semHorarios.remove(decrescente.get(i));
+					JOptionPane.showMessageDialog(null, "vertice " + decrescente.get(i).label + " - horario " + decrescente.get(i).horario );
 				} 
 			}
 		}
@@ -160,24 +145,32 @@ public class Main {
 		
 		while(!semHorarios.isEmpty()) {
 			
+			int verfHorario = 0;
+			
 			for(int i=0;i<semHorarios.size();i++) {
-				int verfHorario = 0;
+				verfHorario = 0;
 				
 				for(int j=0;j<semHorarios.get(i).adj.size();j++){
-					if(semHorarios.get(i).adj.get(j).horario == horarios.get(contHorario)){
-						verfHorario++;
-					}
+						if(semHorarios.get(i).adj.get(j).horario == horarios.get(contHorario)){
+							verfHorario++;
+						}
 				}
 				
 				if(verfHorario==0) {
 					semHorarios.get(i).horario = horarios.get(contHorario);
-					semHorarios.remove(semHorarios.get(i));
+					JOptionPane.showMessageDialog(null, "vertice " + semHorarios.get(i).label + " - horario " + semHorarios.get(i).horario );
 				}
 				
+			}   
+			
+			for(int i =0;i<semHorarios.size();i++) {
+				if(semHorarios.get(i).horario != null) {
+					semHorarios.remove(i);
+				}
 			}
 			
 			contHorario++;
-			JOptionPane.showMessageDialog(null, horarios.get(contHorario));
+
 		}
 		
 		
