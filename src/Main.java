@@ -74,14 +74,14 @@ public class Main {
 		v6.adj.add(v5);
 		conjuntoE.add(a5);
 		
-		/*
+	
 		Aresta a6 = new Aresta();
 		a6.origem = v4;
 		a6.destino = v1;
 		v4.adj.add(v1);
 		v1.adj.add(v4);
 		conjuntoE.add(a6);
-		*/
+		
 		
 		for(int i=0;i<conjuntoV.size();i++){ // calcula o grau do vertice
 			for(int j=0;j<conjuntoV.get(i).adj.size();j++){
@@ -128,8 +128,7 @@ public class Main {
 					
 					if(decrescente.get(i).adj.get(j).horario == horarios.get(contHorario)) {
 						verfPintado++; 
-					}
-						
+					}	
 				}
 				
 				if(verfPintado==0) {
@@ -138,31 +137,32 @@ public class Main {
 					semHorarios.remove(decrescente.get(i));
 				} 
 			}
-		
 		}
 		
 		contHorario++; //Segunda parte do algoritmo
 		
 		while(!semHorarios.isEmpty()) {
-			
+
 			int verfHorario = 0;
+			int op2 = semHorarios.size();
 			
-			for(int i=0;i<semHorarios.size();i++) {
-				verfHorario = 0;
+			if(op2!=0) {
+				for(int i=0;i<semHorarios.size();i++) {
+					verfHorario = 0;
 				 
-				for(int j=0;j<semHorarios.get(i).adj.size();j++) {
+					for(int j=0;j<semHorarios.get(i).adj.size();j++) {
 						if(semHorarios.get(i).adj.get(j).horario == horarios.get(contHorario)){
 							verfHorario++;
 						}
-				}
+					}
 				
 				if(verfHorario==0) {
 					semHorarios.get(i).horario = horarios.get(contHorario);
 					JOptionPane.showMessageDialog(null, "vertice " + semHorarios.get(i).label + " - horario " + semHorarios.get(i).horario );
 				}
 				
-			}   
-			
+				}   
+			}
 			String removido;
 			
 			int op = semHorarios.size();
@@ -170,19 +170,26 @@ public class Main {
 			
 			while (op>0) {
 				
-			
+				op = 0;
+
 				if(semHorarios.get(y).horario != null) {
-					//removido = semHorarios.get(y).label;
-					//JOptionPane.showMessageDialog(null, semHorarios.get(0).label);
+					removido = semHorarios.get(y).label;
+					JOptionPane.showMessageDialog(null, semHorarios.get(0).label);
+					JOptionPane.showMessageDialog(null, "REMOVIDO - " + removido + "HORARIO: " + semHorarios.get(y).horario + "\n Tamanho - " + semHorarios.size()+ "\n posição vetor: " + y);
+					JOptionPane.showMessageDialog(null, semHorarios.get(0).label); 
 					semHorarios.remove(y); 
-					//JOptionPane.showMessageDialog(null, "REMOVIDO - " + removido + "HORARIO: " + semHorarios.get(y).horario + "\n Tamanho - " + semHorarios.size()+ "\n posição vetor: " + y);
-					//JOptionPane.showMessageDialog(null, semHorarios.get(0).label);
+					JOptionPane.showMessageDialog(null, y);
 					y--;
+				 	JOptionPane.showMessageDialog(null, y);
 				}
 				
-				for(int i=0;i<semHorarios.size();i++) {
-					if(semHorarios.get(i).horario != null){
-					 op++;
+				int op3 = semHorarios.size();
+				
+				if(op3!=0) {
+					for(int i=0;i<semHorarios.size();i++) {
+						if(semHorarios.get(i).horario != null){
+							op++;
+						}
 					}
 				}
 				
@@ -201,7 +208,6 @@ public class Main {
 			JOptionPane.showMessageDialog(null, sem);
 
 		}
-		
 		
 		String vertices  = "";
 		
