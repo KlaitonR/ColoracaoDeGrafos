@@ -117,31 +117,31 @@ public class Main {
 			Vertice v = listaDecrescente(aux, conjuntoVoriginal);
 			decrescente.add(v);
 			semHorarios.add(v);
-			
 		}
 		
-		int verfPintado = 0;
+		int verfPintado = 0; //Primeira parte do algoritmo
 		
 		for(int i=0;i<decrescente.size();i++) {
 			verfPintado = 0 ;
 			if(decrescente.get(i).horario == null) {
 				for(int j=0;j<decrescente.get(i).adj.size();j++) {
 					
-						if(decrescente.get(i).adj.get(j).horario == horarios.get(contHorario)) {
-							verfPintado++; 
-						}
+					if(decrescente.get(i).adj.get(j).horario == horarios.get(contHorario)) {
+						verfPintado++; 
+					}
 						
 				}
 				
 				if(verfPintado==0) {
 					decrescente.get(i).horario = horarios.get(contHorario);
-					semHorarios.remove(decrescente.get(i));
 					JOptionPane.showMessageDialog(null, "vertice " + decrescente.get(i).label + " - horario " + decrescente.get(i).horario );
+					semHorarios.remove(decrescente.get(i));
 				} 
 			}
+		
 		}
 		
-		contHorario++;
+		contHorario++; //Segunda parte do algoritmo
 		
 		while(!semHorarios.isEmpty()) {
 			
@@ -149,8 +149,8 @@ public class Main {
 			
 			for(int i=0;i<semHorarios.size();i++) {
 				verfHorario = 0;
-				
-				for(int j=0;j<semHorarios.get(i).adj.size();j++){
+				 
+				for(int j=0;j<semHorarios.get(i).adj.size();j++) {
 						if(semHorarios.get(i).adj.get(j).horario == horarios.get(contHorario)){
 							verfHorario++;
 						}
@@ -163,13 +163,42 @@ public class Main {
 				
 			}   
 			
-			for(int i =0;i<semHorarios.size();i++) {
-				if(semHorarios.get(i).horario != null) {
-					semHorarios.remove(i);
+			String removido;
+			
+			int op = semHorarios.size();
+			int y=0;
+			
+			while (op>0) {
+				
+			
+				if(semHorarios.get(y).horario != null) {
+					//removido = semHorarios.get(y).label;
+					//JOptionPane.showMessageDialog(null, semHorarios.get(0).label);
+					semHorarios.remove(y); 
+					//JOptionPane.showMessageDialog(null, "REMOVIDO - " + removido + "HORARIO: " + semHorarios.get(y).horario + "\n Tamanho - " + semHorarios.size()+ "\n posição vetor: " + y);
+					//JOptionPane.showMessageDialog(null, semHorarios.get(0).label);
+					y--;
 				}
+				
+				for(int i=0;i<semHorarios.size();i++) {
+					if(semHorarios.get(i).horario != null){
+					 op++;
+					}
+				}
+				
+				y++;	
+				
 			}
 			
 			contHorario++;
+			
+			String sem = "Conjunto sem horario: ";
+			
+			for(int i =0;i<semHorarios.size();i++) {
+				sem += semHorarios.get(i).label +" " +semHorarios.get(i).horario;
+			}
+			
+			JOptionPane.showMessageDialog(null, sem);
 
 		}
 		

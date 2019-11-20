@@ -7,6 +7,5 @@ public class Vertice {
 	int grau;
 	
 	ArrayList<Vertice> adj = new ArrayList<>();
-	ArrayList<Vertice> Nadj = new ArrayList<>();
 
 }
