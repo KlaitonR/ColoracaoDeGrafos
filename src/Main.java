@@ -9,6 +9,7 @@ public class Main {
 		ArrayList<Vertice> conjuntoV = new ArrayList<>();
 		ArrayList<Aresta> conjuntoE = new ArrayList<>();
 		ArrayList<Vertice> conjuntoVoriginal = new ArrayList<>();
+
 		
 		//SETOR FATIAÇÃO
 		
@@ -74,55 +75,55 @@ public class Main {
 		// SETOR DESOSSA
 		
 		Vertice v19 = new Vertice();
-		v19.label = "Funcionário Embalagem 2";
+		v19.label = "FE_Funcionário Embalagem 2";
 		
 		Vertice v20 = new Vertice();
-		v20.label = "Funcionário Embalagem 3";
+		v20.label = "FE_Funcionário Embalagem 3";
 		
 		Vertice v21 = new Vertice();
-		v21.label = "Funcionário Desossa 1";
+		v21.label = "FD_Funcionário Desossa 1";
 		
 		Vertice v22 = new Vertice();
-		v22.label = "Funcionário Desossa 2";
+		v22.label = "FD_Funcionário Desossa 2";
 		
 		Vertice v23 = new Vertice();
-		v23.label = "Funcionário Desossa 3";
+		v23.label = "FD_Funcionário Desossa 3";
 		
 		Vertice v24 = new Vertice();
-		v24.label = "Funcionário Desossa 4";
+		v24.label = "FD_Funcionário Desossa 4";
 		
 		Vertice v25 = new Vertice();
-		v25.label = "Funcionário Desossa 5";
+		v25.label = "FD_Funcionário Desossa 5";
 		
 		Vertice v26 = new Vertice();
-		v26.label = "Funcionário Serra 1";
+		v26.label = "FS_Funcionário Serra 1";
 		
 		Vertice v27 = new Vertice();
-		v27.label = "Funcionário Controle de Identificação";
+		v27.label = "FCI_Funcionário Controle de Identificação";
 		
 		//SETOR DEFUMAÇÃO
 		
 		Vertice v28 = new Vertice();
-		v28.label = "Funcionário Defumação 1";
+		v28.label = "FDF_Funcionário Defumação 1";
 		
 		Vertice v29 = new Vertice();
-		v29.label = "Funcionário Defumação 2";
+		v29.label = "FDF_Funcionário Defumação 2";
 		
 		//SETOR INJETOURA
 		
 		Vertice v30 = new Vertice();
-		v30.label = "Funcionário Injetora 1";
+		v30.label = "FI_Funcionário Injetora 1";
 		
 		Vertice v31 = new Vertice();
-		v31.label = "Funcionário Injetora 2";
+		v31.label = "FI_Funcionário Injetora 2";
 		
 		//SETOR LIMPEZA
 		
 		Vertice v32 = new Vertice();
-		v32.label = "Funcionário Limpeza 1";
+		v32.label = "FL_Funcionário Limpeza 1";
 		
 		Vertice v33 = new Vertice();
-		v33.label = "Funcionário Limpeza 2";
+		v33.label = "FL_Funcionário Limpeza 2";
 		
 	
 		conjuntoV.add(v1);
@@ -196,11 +197,18 @@ public class Main {
 		v6.adj.add(v5);
 		conjuntoE.add(a5);
 		
-		Aresta a6 = new Aresta();
-		a6.origem = v6;
-		a6.destino = v2;
+		Aresta a42 = new Aresta();
+		a42.origem = v6;
+		a42.destino = v2;
 		v6.adj.add(v2);
 		v2.adj.add(v6);
+		conjuntoE.add(a42);
+		
+		Aresta a6 = new Aresta();
+		a6.origem = v6;
+		a6.destino = v10;
+		v6.adj.add(v10);
+		v10.adj.add(v6);
 		conjuntoE.add(a6);
 		
 		Aresta a7 = new Aresta();
@@ -244,13 +252,6 @@ public class Main {
 		v10.adj.add(v11);
 		v11.adj.add(v10);
 		conjuntoE.add(a12);
-		
-		Aresta a13 = new Aresta();
-		a13.origem = v10;
-		a13.destino = v11;
-		v10.adj.add(v11);
-		v11.adj.add(v10);
-		conjuntoE.add(a13);
 		
 		//SETOR EMBALAGEM DESOSSA
 		
@@ -331,13 +332,6 @@ public class Main {
 		v15.adj.add(v18);
 		v18.adj.add(v15);
 		conjuntoE.add(a23);
-		
-		Aresta a24 = new Aresta();
-		a24.origem = v15;
-		a24.destino = v18;
-		v15.adj.add(v18);
-		v18.adj.add(v15);
-		conjuntoE.add(a24);
 		
 		//SETOR DESSOSA
 		
@@ -443,10 +437,10 @@ public class Main {
 		//SETOR INJETOERA DESOSSA
 		
 		Aresta a38 = new Aresta();
-		a38.origem = v30;
+		a38.origem = v31;
 		a38.destino = v24;
-		v30.adj.add(v24);
-		v24.adj.add(v30);
+		v31.adj.add(v24);
+		v24.adj.add(v31);
 		conjuntoE.add(a38);
 		
 		//SETOR INJETORA DEFUMAÇÃO
@@ -576,8 +570,7 @@ public class Main {
 
 		}
 		
-		String vertices  = "RESULTADOS - Número de horários necessários : "
-				+ contHorario + "\n Horário para cada funcionário: \n" ;
+		String vertices  = "RESULTADO - Número de horários necessários: " + contHorario + "\n";
 		
 		for(int i=0;i<decrescente.size();i++) {
 			vertices += decrescente.get(i).label + " - " + decrescente.get(i).horario + "\n";
